@@ -1,0 +1,123 @@
+/* ベーススタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+/* コンテナ */
+.container {
+    max-width: 100%;
+    max-height: 100%;
+    padding: 15px;
+}
+
+/* グリッドコンテナ */
+.grid-container {
+    display: grid;
+    gap: 20px;
+    min-height: 100vh;
+}
+
+/* 共通スタイル */
+.header,
+.main-visual,
+.global-nav,
+.content,
+.sub-content,
+.sub-nav,
+.footer {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 各エレメントの共用設定 */
+.header {
+    background-color: #e2bd86;
+}
+.main-visual { background-color: #58adb2; }
+.global-nav { background-color: #a7be70; }
+.content { background-color: #ded46e; }
+.sub-content { background-color: #dba1bc; }
+.sub-nav { background-color: #49aad2; }
+.footer { background-color: #9e77a2; }
+
+/* PC レイアウト (769px以上) */
+@media (min-width: 769px) {
+    .grid-container {
+        grid-template-areas:
+            "header header header"
+            "main-visual main-visual main-visual"
+            "global-nav global-nav global-nav"
+            "content content sub-nav"
+            "sub-content sub-content sub-nav"
+            "footer footer footer";
+        grid-template-columns: 1fr 1fr 200px;
+        grid-template-rows: 8vh 22vh 10vh 60vh 15vh 10vh;
+        font-size: x-large;
+        font-weight: 550;
+    }
+    .sub-nav {
+        flex-direction: column; 
+    }
+}
+
+/* タブレット レイアウト (768px以下) */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-areas:
+            "header"
+            "main-visual"
+            "global-nav"
+            "content"
+            "sub-nav"
+            "footer";
+        grid-template-columns: 1fr;
+        grid-template-rows: 10vh 25vh 10vh 60vh 20vh 10vh;
+        font-size: large;
+        font-weight: 700;
+    }
+
+    .sub-content {
+        display: none;
+    }
+}
+
+/* スマートフォン レイアウト (320px以下) */
+@media (max-width: 320px) {
+    .grid-container {
+        grid-template-areas:
+            "header"
+            "global-nav"
+            "main-visual"
+            "content"
+            "footer";
+        grid-template-columns: 1fr;
+        grid-template-rows: 8vh 12vh 20vh 80vb 8vh;
+        font-size: small;
+        font-weight: 700;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .sub-nav {
+        display: none;
+    }
+}
+
+/* グリッドエリアの指定 */
+.header { grid-area: header; }
+.main-visual { grid-area: main-visual; }
+.global-nav { grid-area: global-nav; }
+.content { grid-area: content; }
+.sub-content { grid-area: sub-content; }
+.sub-nav { grid-area: sub-nav; }
+.footer { grid-area: footer; }
